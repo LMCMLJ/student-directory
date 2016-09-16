@@ -21,8 +21,8 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  students.to_enum.with_index(1).each do |elem, i|
+    puts "#{i}: #{students[name]} (#{students[cohort]} cohort)"
   end
 end
 
