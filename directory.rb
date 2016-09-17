@@ -28,18 +28,32 @@ end
 
 def print(students)
   students.each.with_index(1) do |student, i|
-    puts "#{i}: #{student[name]} (#{student[cohort]} cohort)".center(80)
+    puts "#{i}: #{student[name]} (#{student[@cohort]} cohort)".center(80)
   end
 end
 
-def print_by_cohort(students)
+def print_by(students, selection)
   students.map.with_index(1) do |student, i|
-    student = []
-    puts "Enter cohort to print: "
-    cohort = gets.chomp
-    if student[cohort] == cohort
-      puts "#{i}: #{student[name]} (#{student[cohort]} cohort)".center(80)
-    end
+    students_to_print = []
+    if selection == 1
+      puts "Printing by cohort..."
+      puts "Enter cohort to print by: "
+      cohort = gets.chomp
+      if student[cohort] == cohort
+        puts "#{i}: #{student[name]} (#{student[@cohort]} cohort)".center(80)
+      end
+    elsif selection == 2
+      puts "Printing by name length..."
+      if student[name].length < 12
+        puts "#{i}: #{student[name]} (#{student[@cohort]} cohort)".center(80)
+      end
+    elsif selection == 3
+      puts "Printing by first letter of name. Please enter letter to print by:"
+      selected_letter = gets.chomp
+      if student[name][0] == selected letter
+        puts "#{i}: #{student[name]} (#{student[@cohort]} cohort)".center(80)
+      end
+    else puts "Invalid selection, please try again."
   end
 end
 
