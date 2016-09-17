@@ -50,10 +50,12 @@ def print_by(students, selection)
     elsif selection == 3
       puts "Printing by first letter of name. Please enter letter to print by:"
       selected_letter = gets.chomp
-      if student[name][0] == selected letter
+      if student[name].initial == selected_letter
         puts "#{i}: #{student[name]} (#{student[@cohort]} cohort)".center(80)
       end
-    else puts "Invalid selection, please try again."
+    else
+      puts "Invalid selection, please try again."
+    end
   end
 end
 
