@@ -84,6 +84,8 @@ def print_menu
   puts "3. Print students by cohort"
   puts "4. Print students by name length"
   puts "5. Print students by first letter of name"
+  puts "6. Save the file to students.csv"
+  puts "7. Load students from students.csv"
   puts "9. Exit program"
 end
 
@@ -91,6 +93,25 @@ def show_students
   print_header
   print_students
   print_footer
+end
+
+def save_students
+  file = File.open("students.csv", "w")
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
+end
+
+def load_students
+  file = File.open("students.csv", "w")
+  file.readlines.each do |line|
+  name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
 end
 
 def process(choice)
@@ -105,6 +126,10 @@ def process(choice)
     print_by(2)
   when "5"
     print_by(3)
+  when "6"
+    save_students
+  when "7"
+    load_students
   when "9"
     exit
   else
