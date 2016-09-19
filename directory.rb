@@ -9,13 +9,13 @@ def input_students
   puts "To finish, just hit enter twice"
   puts "\n\n\n"
   puts "Enter cohort of students (cohort will remain unchanged):"
-  cohort = gets.chomp
+  cohort = STDIN.gets.chomp
   if cohort == ''
     cohort = "september"
   end
   puts "\n"
   puts "Enter name:"
-  name = gets.chomp
+  name = STDIN.gets.chomp
   while !name.empty? do
     @students << {name: name, cohort: cohort}
     if @students.count > 1
@@ -23,7 +23,7 @@ def input_students
     else
       puts "Now we have 1 student"
     end
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -46,7 +46,7 @@ def print_by(selection)
   if selection == 1
     puts "Printing by cohort..."
     puts "Enter cohort to print by: "
-    cohort = gets.chomp
+    cohort = STDIN.gets.chomp
     @students.map.with_index(1) do |student, i|
       if student[:cohort] == cohort
         puts "#{i}: #{student[:name]} (#{student[:cohort]} cohort)".center(80)
@@ -61,7 +61,7 @@ def print_by(selection)
     end
   elsif selection == 3
     puts "Printing by first letter of name. Please enter letter to print by:"
-    selected_letter = gets.chomp
+    selected_letter = STDIN.gets.chomp
     @students.map.with_index(1) do |student, i|
       if student[:name].initial.downcase == selected_letter.downcase
         puts "#{i}: #{student[:name]} (#{student[:cohort]} cohort)".center(80)
@@ -152,7 +152,7 @@ end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
